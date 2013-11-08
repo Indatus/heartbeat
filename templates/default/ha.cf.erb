@@ -1,0 +1,16 @@
+watchdog            <%= @node['heartbeat']['config']['watchdog'] %>
+logfile             <%= @node['heartbeat']['config']['logfile'] %>
+debugfile           <%= @node['heartbeat']['config']['debugfile'] %>
+deadtime            <%= @node['heartbeat']['config']['deadtime'] %>
+warntime            <%= @node['heartbeat']['config']['warntime'] %>
+initdead            <%= @node['heartbeat']['config']['initdead'] %>
+auto_failback       <%= @node['heartbeat']['config']['auto_failback'] ? 'on' : 'off' %>
+keepalive           <%= @node['heartbeat']['config']['keepalive'] %>
+udpport             <%= @node['heartbeat']['config']['udpport'] %>
+bcast               <%= @node['heartbeat']['config']['bcast'] %>
+mcast               <%= @node['heartbeat']['config']['bcast'] %> 225.0.0.1 <%= @node['heartbeat']['config']['udpport'] %> 1 0
+ucast               <%= @node['heartbeat']['config']['bcast'] %> <%= @mirror_node_ip %>
+udp                 <%= @node['heartbeat']['config']['bcast'] %>
+<%- @node['heartbeat']['config']['nodes'].each do |node| -%>
+node                <%= node['hostname'] %>
+<%- end -%>
