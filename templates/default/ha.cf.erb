@@ -10,7 +10,6 @@ udpport             <%= @node['heartbeat']['config']['udpport'] %>
 bcast               <%= @node['heartbeat']['config']['bcast'] %>
 mcast               <%= @node['heartbeat']['config']['bcast'] %> 225.0.0.1 <%= @node['heartbeat']['config']['udpport'] %> 1 0
 ucast               <%= @node['heartbeat']['config']['bcast'] %> <%= @mirror_node_ip %>
-udp                 <%= @node['heartbeat']['config']['bcast'] %>
 <%- @node['heartbeat']['config']['nodes'].each do |node| -%>
 node                <%= node['hostname'] %>
 <%- end -%>
