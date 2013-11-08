@@ -12,11 +12,7 @@ default['heartbeat']['config']['auto_failback'] = true # 'on'
 default['heartbeat']['config']['keepalive']     = 2
 default['heartbeat']['config']['udpport']       = 694
 default['heartbeat']['config']['nodes']         = []
-default['heartbeat']['config']['shared_ip']     = {
-    :interface => 'eth0:1',
-    :address => nil,
-    :netmask => nil
-}
+default['heartbeat']['config']['shared_ip']     = nil
 
 #authkeys related settings
 default['heartbeat']['config']['active_key']    = 1

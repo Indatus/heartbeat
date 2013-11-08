@@ -18,21 +18,7 @@ service "heartbeat" do
 end
 
 #add the shared IP
-unless node['heartbeat']['config']['shared_ip']['address'].nil?
-
-  # #add shared IP to the interface list
-  # execute "add shared ip" do 
-
-  #   addy = node['heartbeat']['config']['shared_ip']
-
-  #   cmd = "auto #{addy['interface']}\n"
-  #   cmd += "iface #{addy['interface']} inet static\n"
-  #   cmd += "\taddress #{addy['address']}\n"
-  #   cmd += "\tnetmask #{addy['netmask']}\n"
-
-  #   command "printf \"#{cmd}\" >> /etc/network/interfaces"
-  #   not_if "cat /etc/network/interfaces | grep #{addy['address']}"
-  # end
+unless node['heartbeat']['config']['shared_ip'].nil?
 
   #prevent ip conflicts w/ others sharing that IP
   execute "prevent shared ip conflict" do 
@@ -68,6 +54,6 @@ template "#{node['heartbeat']['conf_dir']}/haresources" do
   group "root"
   mode "644"
   notifies :restart, "service[heartbeat]"
-  variables :shared_ip => node['heartbeat']['config']['shared_ip']['address'], 
+  variables :shared_ip => node['heartbeat']['config']['shared_ip'], 
     :master_node => node['heartbeat']['config']['nodes'].first['hostname']
 end
