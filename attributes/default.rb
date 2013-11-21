@@ -4,6 +4,7 @@ default['heartbeat']['conf_dir'] = '/etc/ha.d'
 default['heartbeat']['config']['watchdog']      = "/dev/watchdog"
 default['heartbeat']['config']['logfile']       = "/var/log/ha-log"
 default['heartbeat']['config']['debugfile']     = "/var/log/ha-debug"
+default['heartbeat']['config']['logfacility']   = "local0"
 default['heartbeat']['config']['deadtime']      = 5
 default['heartbeat']['config']['warntime']      = 10
 default['heartbeat']['config']['initdead']      = 15

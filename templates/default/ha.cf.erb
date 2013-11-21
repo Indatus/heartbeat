@@ -1,6 +1,13 @@
 watchdog            <%= @node['heartbeat']['config']['watchdog'] %>
+<%- unless @node['heartbeat']['config']['logfile'].nil? %>
 logfile             <%= @node['heartbeat']['config']['logfile'] %>
+<%- end -%>
+<%- unless @node['heartbeat']['config']['debugfile'].nil? %>
 debugfile           <%= @node['heartbeat']['config']['debugfile'] %>
+<%- end -%>
+<%- unless @node['heartbeat']['config']['logfacility'].nil? %>
+logfacility         <%= @node['heartbeat']['config']['logfacility'] %>
+<%- end -%>
 deadtime            <%= @node['heartbeat']['config']['deadtime'] %>
 warntime            <%= @node['heartbeat']['config']['warntime'] %>
 initdead            <%= @node['heartbeat']['config']['initdead'] %>
