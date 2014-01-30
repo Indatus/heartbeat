@@ -1,6 +1,6 @@
 case node['platform_family']
   when "debian"
-    package_list = ['heartbeat', 'heartbeat-dev']
+    package_list = ['heartbeat']
 end
 
 package_list.each do |pkg|
