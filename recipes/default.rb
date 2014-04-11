@@ -1,3 +1,8 @@
+execute "enable-CentOS-EPEL-repos" do 
+  command "rpm -Uvh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm"
+  only_if { node['platform_family'] == 'rhel' }
+end
+
 case node['platform_family']
   when "debian"
     package_list = ['heartbeat']
