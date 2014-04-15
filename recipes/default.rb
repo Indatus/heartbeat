@@ -30,9 +30,17 @@ end
 unless node['heartbeat']['config']['shared_ip'].nil?
 
   #prevent ip conflicts w/ others sharing that IP
-  execute "prevent shared ip conflict" do 
-    command "echo \"net.ipv4.ip_nonlocal_bind=1\" >> /etc/sysctl.conf && sysctl -p"
-    not_if "cat /etc/sysctl.conf | grep net.ipv4.ip_nonlocal_bind"
+  execute "load-sysctl-settings" do
+    command "/sbin/sysctl -p"
+    action :nothing
+  end
+
+  template "/etc/sysctl.conf" do
+    source "sysctl.conf.erb"
+    mode "644"
+    owner "root"
+    group "root"
+    notifies :run, "execute[load-sysctl-settings]", :immediately
   end
 end
 
